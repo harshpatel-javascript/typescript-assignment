@@ -337,6 +337,9 @@ second.addEventListener("click", function () {
         }
     }
 });
+function convertToString(val) {
+    return val.toString();
+}
 //equal operator
 function evaluate(str) {
     function splitString(str) {
@@ -368,34 +371,42 @@ function evaluate(str) {
     }
     function multiply(arr) {
         let index = findMultIndex(arr);
-        arr[index] = parseInt(arr[index - 1]) * parseInt(arr[index + 1]);
+        arr[index] =
+            parseInt(convertToString(arr[index - 1])) *
+                parseInt(convertToString(arr[index + 1]));
         //c is the value of result and both operands
         return arr.filter((c, i) => {
-            return i !== index - 1 && i !== index + 1;
+            return i !== +index - 1 && i !== +index + 1;
         });
     }
     function divide(arr) {
         let index = findDivIndex(arr);
-        arr[index] = parseInt(arr[index - 1]) / parseInt(arr[index + 1]);
+        arr[index] =
+            parseInt(convertToString(arr[index - 1])) /
+                parseInt(convertToString(arr[index + 1]));
         //c is the value of result and both operands
         return arr.filter((c, i) => {
-            return i !== index - 1 && i !== index + 1;
+            return i !== +index - 1 && i !== +index + 1;
         });
     }
     function add(arr) {
         let index = findAddIndex(arr);
-        arr[index] = parseInt(arr[index - 1]) + parseInt(arr[index + 1]);
+        arr[index] =
+            parseInt(convertToString(arr[index - 1])) +
+                parseInt(convertToString(arr[index + 1]));
         //c is the value of result and both operands
         return arr.filter((c, i) => {
-            return i !== index - 1 && i !== index + 1;
+            return i !== +index - 1 && i !== +index + 1;
         });
     }
     function subtract(arr) {
         let index = findSubIndex(arr);
-        arr[index] = parseInt(arr[index - 1]) - parseInt(arr[index + 1]);
+        arr[index] =
+            parseInt(convertToString(arr[index - 1])) -
+                parseInt(convertToString(arr[index + 1]));
         //c is the value of result and both operands
         return arr.filter((c, i) => {
-            return i !== index - 1 && i !== index + 1;
+            return i !== +index - 1 && i !== +index + 1;
         });
     }
     function containsMultOrDiv(arr) {

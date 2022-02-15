@@ -3,7 +3,7 @@ var btns = document.querySelectorAll(".btn");
 var number = document.querySelectorAll(".number");
 var operator = document.querySelectorAll(".operator");
 var equal = document.querySelector("#equal");
-var calcScreen = document.querySelector(".calc-screen") as HTMLInputElement;
+var calcScreen = document.querySelector(".calc-screen") as HTMLElement;
 var backspace = document.querySelector("#backspace");
 var del = document.querySelector("#clear") as HTMLElement;
 var deg = document.querySelector("#deg") as HTMLElement;
@@ -358,9 +358,14 @@ second.addEventListener("click", function () {
     }
   }
 });
+
+type stringOrNumber = string | number;
+function convertToString(val: stringOrNumber) {
+  return val.toString();
+}
 //equal operator
-function evaluate(str: string): string[] {
-  function splitString(str: string) {
+function evaluate(str: string): stringOrNumber[] {
+  function splitString(str: string): stringOrNumber[] {
     let index = 0;
     let splitArray = str
       .split("")
@@ -375,66 +380,75 @@ function evaluate(str: string): string[] {
     splitArray.push(str.slice(index));
     return splitArray;
   }
-  function findMultIndex(arr: string[]) {
-    return arr.findIndex((i: string) => i == "*");
+
+  function findMultIndex(arr: stringOrNumber[]) {
+    return arr.findIndex((i: stringOrNumber) => i == "*");
   }
 
-  function findDivIndex(arr: string[]) {
-    return arr.findIndex((i: string) => i == "/");
+  function findDivIndex(arr: stringOrNumber[]) {
+    return arr.findIndex((i: stringOrNumber) => i == "/");
   }
 
-  function findAddIndex(arr: string[]) {
-    return arr.findIndex((i: string) => i == "+");
+  function findAddIndex(arr: stringOrNumber[]) {
+    return arr.findIndex((i: stringOrNumber) => i == "+");
   }
 
-  function findSubIndex(arr: string[]) {
-    return arr.findIndex((i: string) => i == "-");
+  function findSubIndex(arr: stringOrNumber[]) {
+    return arr.findIndex((i: stringOrNumber) => i == "-");
   }
 
-  function multiply(arr: any[]) {
-    let index = findMultIndex(arr);
-    arr[index] = parseInt(arr[index - 1]) * parseInt(arr[index + 1]);
+  function multiply(arr: stringOrNumber[]) {
+    let index: stringOrNumber = findMultIndex(arr);
+    arr[index] =
+      parseInt(convertToString(arr[index - 1])) *
+      parseInt(convertToString(arr[index + 1]));
     //c is the value of result and both operands
-    return arr.filter((c: string, i: number) => {
-      return i !== index - 1 && i !== index + 1;
+    return arr.filter((c: stringOrNumber, i: stringOrNumber) => {
+      return i !== +index - 1 && i !== +index + 1;
     });
   }
 
-  function divide(arr: any[]) {
-    let index = findDivIndex(arr);
-    arr[index] = parseInt(arr[index - 1]) / parseInt(arr[index + 1]);
+  function divide(arr: stringOrNumber[]) {
+    let index: stringOrNumber = findDivIndex(arr);
+    arr[index] =
+      parseInt(convertToString(arr[index - 1])) /
+      parseInt(convertToString(arr[index + 1]));
     //c is the value of result and both operands
-    return arr.filter((c: string, i: number) => {
-      return i !== index - 1 && i !== index + 1;
+    return arr.filter((c: stringOrNumber, i: stringOrNumber) => {
+      return i !== +index - 1 && i !== +index + 1;
     });
   }
 
-  function add(arr: any[]) {
-    let index = findAddIndex(arr);
-    arr[index] = parseInt(arr[index - 1]) + parseInt(arr[index + 1]);
+  function add(arr: stringOrNumber[]) {
+    let index: stringOrNumber = findAddIndex(arr);
+    arr[index] =
+      parseInt(convertToString(arr[index - 1])) +
+      parseInt(convertToString(arr[index + 1]));
     //c is the value of result and both operands
-    return arr.filter((c: string, i: number) => {
-      return i !== index - 1 && i !== index + 1;
+    return arr.filter((c: stringOrNumber, i: stringOrNumber) => {
+      return i !== +index - 1 && i !== +index + 1;
     });
   }
 
-  function subtract(arr: any[]) {
-    let index = findSubIndex(arr);
-    arr[index] = parseInt(arr[index - 1]) - parseInt(arr[index + 1]);
+  function subtract(arr: stringOrNumber[]) {
+    let index: stringOrNumber = findSubIndex(arr);
+    arr[index] =
+      parseInt(convertToString(arr[index - 1])) -
+      parseInt(convertToString(arr[index + 1]));
     //c is the value of result and both operands
-    return arr.filter((c: string, i: number) => {
-      return i !== index - 1 && i !== index + 1;
+    return arr.filter((c: stringOrNumber, i: stringOrNumber) => {
+      return i !== +index - 1 && i !== +index + 1;
     });
   }
 
-  function containsMultOrDiv(arr: string[]) {
-    return arr.some((i: string) => i === "*" || i === "/");
+  function containsMultOrDiv(arr: stringOrNumber[]) {
+    return arr.some((i) => i === "*" || i === "/");
   }
-  function containsAddOrSub(arr: string[]) {
-    return arr.some((i: string) => i === "+" || i === "-");
+  function containsAddOrSub(arr: stringOrNumber[]) {
+    return arr.some((i) => i === "+" || i === "-");
   }
 
-  function simplify(arr: string[]): string[] {
+  function simplify(arr: stringOrNumber[]): stringOrNumber[] {
     while (containsMultOrDiv(arr)) {
       if (arr.includes("*")) {
         if (arr.includes("/")) {
