@@ -3,7 +3,7 @@ var btns = document.querySelectorAll(".btn");
 var number = document.querySelectorAll(".number");
 var operator = document.querySelectorAll(".operator");
 var equal = document.querySelector("#equal");
-var calcScreen: any = document.querySelector(".calc-screen") as HTMLElement;
+var calcScreen = document.querySelector(".calc-screen") as HTMLInputElement;
 var backspace = document.querySelector("#backspace");
 var del = document.querySelector("#clear") as HTMLElement;
 var deg = document.querySelector("#deg") as HTMLElement;
@@ -28,7 +28,7 @@ function eventList(e: Event): string {
         calcScreen.innerHTML = String(result);
       } else {
         // let result = ;
-        calcScreen.innerHTML = evaluate(calcScreen.innerHTML);
+        calcScreen.innerHTML = String(evaluate(calcScreen.innerHTML));
       }
       break;
     case "sin":
@@ -65,16 +65,18 @@ function eventList(e: Event): string {
       }
       break;
     case "round":
-      calcScreen.innerHTML = Math.round(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.round(parseInt(calcScreen.innerHTML)));
       break;
     case "floor":
-      calcScreen.innerHTML = Math.floor(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.floor(parseInt(calcScreen.innerHTML)));
       break;
     case "ceil":
-      calcScreen.innerHTML = Math.ceil(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.ceil(parseInt(calcScreen.innerHTML)));
       break;
     case "f-e":
-      calcScreen.innerHTML = Math.pow(10, parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(
+        Math.pow(10, parseInt(calcScreen.innerHTML))
+      );
       break;
     case "backspace":
       calcScreen.innerHTML = backSpace(calcScreen.innerHTML);
@@ -87,14 +89,14 @@ function eventList(e: Event): string {
       if (calcScreen.innerHTML === "") {
         calcScreen.innerHTML = "3.14";
       } else {
-        calcScreen.innerHTML *= 3.14;
+        calcScreen.innerHTML = String(Math.PI);
       }
       break;
     case "positive-negitive":
       if (calcScreen.innerHTML === "") {
         alert("Please enter the number");
       } else {
-        calcScreen.innerHTML = signChange(calcScreen.innerHTML);
+        calcScreen.innerHTML = String(signChange(calcScreen.innerHTML));
       }
       break;
     case "exponential":
@@ -102,26 +104,28 @@ function eventList(e: Event): string {
         calcScreen.innerHTML = "2.718";
         console.log(calcScreen.innerHTML);
       } else {
-        calcScreen.innerHTML *= 2.718;
+        calcScreen.innerHTML = String(Math.E);
       } //not always they will need as multiplication
       break;
     case "power2":
-      calcScreen.innerHTML = Math.pow(parseInt(calcScreen.innerHTML), 2);
+      calcScreen.innerHTML = String(
+        Math.pow(parseInt(calcScreen.innerHTML), 2)
+      );
       break;
     case "denom":
-      calcScreen.innerHTML = 1 / parseInt(calcScreen.innerHTML);
+      calcScreen.innerHTML = String(1 / parseInt(calcScreen.innerHTML));
       break;
     case "absolute":
-      calcScreen.innerHTML = Math.abs(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.abs(parseInt(calcScreen.innerHTML)));
       break;
     case "expo":
-      calcScreen.innerHTML = Math.exp(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.exp(parseInt(calcScreen.innerHTML)));
       break;
     case "mod":
-      calcScreen.innerHTML = Math.abs(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.abs(parseInt(calcScreen.innerHTML)));
       break;
     case "root":
-      calcScreen.innerHTML = Math.sqrt(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.sqrt(parseInt(calcScreen.innerHTML)));
       break;
     case "open-parenthesis":
       calcScreen.innerHTML += "(";
@@ -133,24 +137,28 @@ function eventList(e: Event): string {
       calcScreen.innerHTML += "^";
       break;
     case "base10":
-      calcScreen.innerHTML = Math.pow(10, parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(
+        Math.pow(10, parseInt(calcScreen.innerHTML))
+      );
       break;
     case "log":
       if (calcScreen.innerHTML === "") {
         alert("Please enter the number.");
       } else {
-        calcScreen.innerHTML = Math.log(parseInt(calcScreen.innerHTML));
+        calcScreen.innerHTML = String(Math.log(parseInt(calcScreen.innerHTML)));
       }
       break;
     case "ln":
       if (calcScreen.innerHTML === "") {
         alert("Please enter the number.");
       } else {
-        calcScreen.innerHTML = Math.log10(parseInt(calcScreen.innerHTML));
+        calcScreen.innerHTML = String(
+          Math.log10(parseInt(calcScreen.innerHTML))
+        );
       }
       break;
     case "factorial":
-      calcScreen.innerHTML = factorialFunc(calcScreen.innerHTML);
+      calcScreen.innerHTML = String(factorialFunc(calcScreen.innerHTML));
       break;
     case "memory-clear":
       memoryClear();
@@ -161,16 +169,17 @@ function eventList(e: Event): string {
     case "memory-minus":
       memoryMinus();
       break;
-    case "memory-stored":
-      calcScreen.innerHTML = memoryStored();
-      break;
+    // case "memory-stored":
+    //   calcScreen.innerHTML = memoryStored();
+    //   break;
     case "memory-recall":
       calcScreen.innerHTML = memoryRecall();
       break;
     case "power3":
       if (calcScreen.innerHTML.includes("-")) {
-        calcScreen.innerHTML =
-          -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 3);
+        calcScreen.innerHTML = String(
+          -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 3)
+        );
       } else {
         calcScreen.innerHTML = Math.pow(
           parseInt(calcScreen.innerHTML),
@@ -180,23 +189,30 @@ function eventList(e: Event): string {
       break;
     case "qube-root":
       if (calcScreen.innerHTML.includes("-")) {
-        calcScreen.innerHTML =
-          -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 1 / 3);
+        calcScreen.innerHTML = String(
+          -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 1 / 3)
+        );
       } else {
-        calcScreen.innerHTML = Math.pow(parseInt(calcScreen.innerHTML), 1 / 3);
+        calcScreen.innerHTML = String(
+          Math.pow(parseInt(calcScreen.innerHTML), 1 / 3)
+        );
       }
       break;
     case "x-root-y":
       calcScreen.innerHTML += "^";
       break;
     case "base2":
-      calcScreen.innerHTML = Math.pow(2, parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(
+        Math.pow(2, parseInt(calcScreen.innerHTML))
+      );
       break;
     case "log2":
-      calcScreen.innerHTML = Math.log2(parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(Math.log2(parseInt(calcScreen.innerHTML)));
       break;
     case "base-e":
-      calcScreen.innerHTML = Math.pow(Math.E, parseInt(calcScreen.innerHTML));
+      calcScreen.innerHTML = String(
+        Math.pow(Math.E, parseInt(calcScreen.innerHTML))
+      );
       break;
   }
   return calcScreen.innerHTML;
@@ -256,7 +272,7 @@ function memoryStored() {
   if (memory.length === 0) {
     alert("nothing is stored");
   } else {
-    calcScreen.innerHTML = memory[i];
+    calcScreen.innerHTML = memory[i].toString();
     i++;
     if (i === memory.length) {
       i = 0;
@@ -281,14 +297,16 @@ btns.forEach((btn) => {
 });
 
 //factorial function
-function factorialFunc(n: string | number): any {
+function factorialFunc(n: string | number): number {
+  let result: number;
   for (let i = 1; i <= n; i++) {
     if (n === 1 || n === 0) {
-      return 1;
+      result = 1;
     } else {
-      return +n * factorialFunc(+n - 1);
+      result = +n * factorialFunc(+n - 1);
     }
   }
+  return result;
 }
 //adding to the screen
 number.forEach((number) => {
@@ -377,7 +395,7 @@ function evaluate(str: string): string[] {
     let index = findMultIndex(arr);
     arr[index] = parseInt(arr[index - 1]) * parseInt(arr[index + 1]);
     //c is the value of result and both operands
-    return arr.filter((c: any, i: number) => {
+    return arr.filter((c: string, i: number) => {
       return i !== index - 1 && i !== index + 1;
     });
   }
@@ -386,7 +404,7 @@ function evaluate(str: string): string[] {
     let index = findDivIndex(arr);
     arr[index] = parseInt(arr[index - 1]) / parseInt(arr[index + 1]);
     //c is the value of result and both operands
-    return arr.filter((c: any, i: number) => {
+    return arr.filter((c: string, i: number) => {
       return i !== index - 1 && i !== index + 1;
     });
   }
@@ -395,7 +413,7 @@ function evaluate(str: string): string[] {
     let index = findAddIndex(arr);
     arr[index] = parseInt(arr[index - 1]) + parseInt(arr[index + 1]);
     //c is the value of result and both operands
-    return arr.filter((c: any, i: number) => {
+    return arr.filter((c: string, i: number) => {
       return i !== index - 1 && i !== index + 1;
     });
   }
@@ -404,7 +422,7 @@ function evaluate(str: string): string[] {
     let index = findSubIndex(arr);
     arr[index] = parseInt(arr[index - 1]) - parseInt(arr[index + 1]);
     //c is the value of result and both operands
-    return arr.filter((c: any, i: number) => {
+    return arr.filter((c: string, i: number) => {
       return i !== index - 1 && i !== index + 1;
     });
   }
@@ -521,6 +539,3 @@ document.onkeydown = function (event) {
       break;
   }
 };
-function e(e: any): void {
-  throw new Error("Function not implemented.");
-}

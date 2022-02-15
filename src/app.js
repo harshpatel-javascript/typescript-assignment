@@ -26,7 +26,7 @@ function eventList(e) {
             }
             else {
                 // let result = ;
-                calcScreen.innerHTML = evaluate(calcScreen.innerHTML);
+                calcScreen.innerHTML = String(evaluate(calcScreen.innerHTML));
             }
             break;
         case "sin":
@@ -54,16 +54,16 @@ function eventList(e) {
             }
             break;
         case "round":
-            calcScreen.innerHTML = Math.round(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.round(parseInt(calcScreen.innerHTML)));
             break;
         case "floor":
-            calcScreen.innerHTML = Math.floor(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.floor(parseInt(calcScreen.innerHTML)));
             break;
         case "ceil":
-            calcScreen.innerHTML = Math.ceil(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.ceil(parseInt(calcScreen.innerHTML)));
             break;
         case "f-e":
-            calcScreen.innerHTML = Math.pow(10, parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.pow(10, parseInt(calcScreen.innerHTML)));
             break;
         case "backspace":
             calcScreen.innerHTML = backSpace(calcScreen.innerHTML);
@@ -77,7 +77,7 @@ function eventList(e) {
                 calcScreen.innerHTML = "3.14";
             }
             else {
-                calcScreen.innerHTML *= 3.14;
+                calcScreen.innerHTML = String(Math.PI);
             }
             break;
         case "positive-negitive":
@@ -85,7 +85,7 @@ function eventList(e) {
                 alert("Please enter the number");
             }
             else {
-                calcScreen.innerHTML = signChange(calcScreen.innerHTML);
+                calcScreen.innerHTML = String(signChange(calcScreen.innerHTML));
             }
             break;
         case "exponential":
@@ -94,26 +94,26 @@ function eventList(e) {
                 console.log(calcScreen.innerHTML);
             }
             else {
-                calcScreen.innerHTML *= 2.718;
+                calcScreen.innerHTML = String(Math.E);
             } //not always they will need as multiplication
             break;
         case "power2":
-            calcScreen.innerHTML = Math.pow(parseInt(calcScreen.innerHTML), 2);
+            calcScreen.innerHTML = String(Math.pow(parseInt(calcScreen.innerHTML), 2));
             break;
         case "denom":
-            calcScreen.innerHTML = 1 / parseInt(calcScreen.innerHTML);
+            calcScreen.innerHTML = String(1 / parseInt(calcScreen.innerHTML));
             break;
         case "absolute":
-            calcScreen.innerHTML = Math.abs(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.abs(parseInt(calcScreen.innerHTML)));
             break;
         case "expo":
-            calcScreen.innerHTML = Math.exp(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.exp(parseInt(calcScreen.innerHTML)));
             break;
         case "mod":
-            calcScreen.innerHTML = Math.abs(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.abs(parseInt(calcScreen.innerHTML)));
             break;
         case "root":
-            calcScreen.innerHTML = Math.sqrt(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.sqrt(parseInt(calcScreen.innerHTML)));
             break;
         case "open-parenthesis":
             calcScreen.innerHTML += "(";
@@ -125,14 +125,14 @@ function eventList(e) {
             calcScreen.innerHTML += "^";
             break;
         case "base10":
-            calcScreen.innerHTML = Math.pow(10, parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.pow(10, parseInt(calcScreen.innerHTML)));
             break;
         case "log":
             if (calcScreen.innerHTML === "") {
                 alert("Please enter the number.");
             }
             else {
-                calcScreen.innerHTML = Math.log(parseInt(calcScreen.innerHTML));
+                calcScreen.innerHTML = String(Math.log(parseInt(calcScreen.innerHTML)));
             }
             break;
         case "ln":
@@ -140,11 +140,11 @@ function eventList(e) {
                 alert("Please enter the number.");
             }
             else {
-                calcScreen.innerHTML = Math.log10(parseInt(calcScreen.innerHTML));
+                calcScreen.innerHTML = String(Math.log10(parseInt(calcScreen.innerHTML)));
             }
             break;
         case "factorial":
-            calcScreen.innerHTML = factorialFunc(calcScreen.innerHTML);
+            calcScreen.innerHTML = String(factorialFunc(calcScreen.innerHTML));
             break;
         case "memory-clear":
             memoryClear();
@@ -155,16 +155,15 @@ function eventList(e) {
         case "memory-minus":
             memoryMinus();
             break;
-        case "memory-stored":
-            calcScreen.innerHTML = memoryStored();
-            break;
+        // case "memory-stored":
+        //   calcScreen.innerHTML = memoryStored();
+        //   break;
         case "memory-recall":
             calcScreen.innerHTML = memoryRecall();
             break;
         case "power3":
             if (calcScreen.innerHTML.includes("-")) {
-                calcScreen.innerHTML =
-                    -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 3);
+                calcScreen.innerHTML = String(-1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 3));
             }
             else {
                 calcScreen.innerHTML = Math.pow(parseInt(calcScreen.innerHTML), 3).toString();
@@ -172,24 +171,23 @@ function eventList(e) {
             break;
         case "qube-root":
             if (calcScreen.innerHTML.includes("-")) {
-                calcScreen.innerHTML =
-                    -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 1 / 3);
+                calcScreen.innerHTML = String(-1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 1 / 3));
             }
             else {
-                calcScreen.innerHTML = Math.pow(parseInt(calcScreen.innerHTML), 1 / 3);
+                calcScreen.innerHTML = String(Math.pow(parseInt(calcScreen.innerHTML), 1 / 3));
             }
             break;
         case "x-root-y":
             calcScreen.innerHTML += "^";
             break;
         case "base2":
-            calcScreen.innerHTML = Math.pow(2, parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.pow(2, parseInt(calcScreen.innerHTML)));
             break;
         case "log2":
-            calcScreen.innerHTML = Math.log2(parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.log2(parseInt(calcScreen.innerHTML)));
             break;
         case "base-e":
-            calcScreen.innerHTML = Math.pow(Math.E, parseInt(calcScreen.innerHTML));
+            calcScreen.innerHTML = String(Math.pow(Math.E, parseInt(calcScreen.innerHTML)));
             break;
     }
     return calcScreen.innerHTML;
@@ -253,7 +251,7 @@ function memoryStored() {
         alert("nothing is stored");
     }
     else {
-        calcScreen.innerHTML = memory[i];
+        calcScreen.innerHTML = memory[i].toString();
         i++;
         if (i === memory.length) {
             i = 0;
@@ -277,14 +275,16 @@ btns.forEach((btn) => {
 });
 //factorial function
 function factorialFunc(n) {
+    let result;
     for (let i = 1; i <= n; i++) {
         if (n === 1 || n === 0) {
-            return 1;
+            result = 1;
         }
         else {
-            return +n * factorialFunc(+n - 1);
+            result = +n * factorialFunc(+n - 1);
         }
     }
+    return result;
 }
 //adding to the screen
 number.forEach((number) => {
@@ -516,7 +516,4 @@ document.onkeydown = function (event) {
             break;
     }
 };
-function e(e) {
-    throw new Error("Function not implemented.");
-}
 //# sourceMappingURL=app.js.map
