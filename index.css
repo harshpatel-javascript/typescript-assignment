@@ -82,8 +82,9 @@ body {
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: var(--dropdownMenu-color);
+  background-color: var(--container-bg-color);
   border-radius: 5px;
+  border: 1px solid var(--box-shadow-color);
 }
 .trigo-menu {
   width: 140px;
@@ -92,7 +93,7 @@ body {
   width: 115px;
 }
 .show {
-  display: block;
+  display: grid;
 }
 .hide {
   display: none;
