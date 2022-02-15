@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>   
+    <title>Calculator</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
@@ -36,7 +36,7 @@
                   <img src="./images/trigonometry.png" alt="trigo-icon" />
                   Trigonometry
                 </button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu trigo-menu">
                   <div class="btn" id="sin">Sin</div>
                   <div class="btn" id="cos">Cos</div>
                   <div class="btn" id="tan">Tan</div>
@@ -45,25 +45,25 @@
               <div class="dropdown">
                 <button class="function-btn dropdown-btn column-3 btn">
                   <img
-                  src="./images/musical-symbol-of-letter-f.png"
-                  alt="function-icon"/>
-                  Function 
+                    src="./images/musical-symbol-of-letter-f.png"
+                    alt="function-icon"
+                  />
+                  Function
                 </button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu function-menu">
                   <div class="btn" id="absolute">Absolute</div>
                   <div class="btn" id="round">Round</div>
                   <div class="btn" id="floor">Floor</div>
                   <div class="btn" id="ceil">ceil</div>
                 </div>
-              </div> 
-              
+              </div>
             </div>
           </div>
-            <!-- row-4 -->
+          <!-- row-4 -->
           <div class="row">
             <div id="second" class="btn">2<sup>nd</sup></div>
             <!-- pi with unicode -->
-            <div id="pi" class="btn">&#960;</div> 
+            <div id="pi" class="btn">&#960;</div>
             <div id="exponential" class="btn">e</div>
             <div id="clear" class="btn">C</div>
             <div id="backspace" class="btn">
@@ -73,7 +73,7 @@
           <!-- row-5 -->
           <div class="row switch">
             <div id="power2" class="btn">x<sup>2</sup></div>
-            <div id= "power3" class="btn hide ">x<sup>3</sup></div>
+            <div id="power3" class="btn hide">x<sup>3</sup></div>
             <div id="denom" class="btn">1/x</div>
             <div id="absolute" class="btn">|x|</div>
             <div id="expo" class="btn">exp</div>
@@ -84,7 +84,7 @@
             <!-- square root with unicode -->
             <div id="root" class="btn">&radic;x</div>
             <!-- qube root with unicode -->
-            <div id= "qube-root" class="btn hide">&#8731;x</div>
+            <div id="cube-root" class="btn hide">&#8731;x</div>
             <div id="open-parenthesis" class="btn">(</div>
             <div id="close-parenthesis" class="btn">)</div>
             <div id="factorial" class="btn">n!</div>
@@ -94,7 +94,7 @@
           <div class="row switch">
             <div id="power" class="btn">x<sup>y</sup></div>
             <!-- x root y with unicode -->
-            <div id= "x-root-y" class="btn hide "><sup>y</sup>&radic;x</div>
+            <div id="x-root-y" class="btn hide"><sup>y</sup>&radic;x</div>
             <div id="seven" class="btn number">7</div>
             <div id="eight" class="btn number">8</div>
             <div id="nine" class="btn number">9</div>
@@ -103,7 +103,7 @@
           <!-- row-8 -->
           <div class="row switch">
             <div id="base10" class="btn">10<sup>x</sup></div>
-            <div id= "base2" class="btn hide ">2<sup>x</sup></div>
+            <div id="base2" class="btn hide">2<sup>x</sup></div>
             <div id="four" class="btn number">4</div>
             <div id="five" class="btn number">5</div>
             <div id="six" class="btn number">6</div>
@@ -112,7 +112,7 @@
           <!-- row-9 -->
           <div class="row switch">
             <div id="log" class="btn">log</div>
-            <div id= "log2" class="btn hide ">log<sub>2</sub>x</div>
+            <div id="log2" class="btn hide">log<sub>2</sub>x</div>
             <div id="one" class="btn number">1</div>
             <div id="two" class="btn number">2</div>
             <div id="three" class="btn number">3</div>
@@ -121,7 +121,7 @@
           <!-- row-10 -->
           <div class="row switch">
             <div id="ln" class="btn">ln</div>
-            <div id= "base-e" class="btn hide">e<sup>x</sup></div>
+            <div id="base-e" class="btn hide">e<sup>x</sup></div>
             <div id="positive-negitive" class="btn">+/-</div>
             <div id="zero" class="btn number">0</div>
             <div id="decimal" class="btn operator">.</div>
