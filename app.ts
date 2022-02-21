@@ -102,7 +102,6 @@ function eventList(e: Event): string {
     case "exponential":
       if (calcScreen.innerHTML === "") {
         calcScreen.innerHTML = "2.718";
-        console.log(calcScreen.innerHTML);
       } else {
         calcScreen.innerHTML = String(Math.E);
       } //not always they will need as multiplication
@@ -187,7 +186,7 @@ function eventList(e: Event): string {
         ).toString();
       }
       break;
-    case "qube-root":
+    case "cube-root":
       if (calcScreen.innerHTML.includes("-")) {
         calcScreen.innerHTML = String(
           -1 * Math.pow(-1 * parseInt(calcScreen.innerHTML), 1 / 3)
@@ -248,7 +247,6 @@ deg.addEventListener("click", function () {
 function memoryPlus(num: string) {
   if (memory.length === 0) {
     memory.push(num);
-    console.log(memory);
     calcScreen.innerHTML = "";
   } else {
     memory.push(num);
@@ -256,7 +254,6 @@ function memoryPlus(num: string) {
     memory.pop();
     memory.push(memory1.toString());
     calcScreen.innerHTML = "";
-    console.log(memory);
     return memory1;
   }
 }
@@ -284,7 +281,6 @@ function memoryClear() {
   for (let i = 0; i <= memory.length; i++) {
     memory.pop();
   }
-  console.log(memory);
   return memory;
 }
 function memoryRecall() {
